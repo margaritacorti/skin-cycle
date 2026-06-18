@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#6b8ba8">
+    <title>SkinCycle - Tu Rutina</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #5a7a8c 0%, #7a9aac 40%, #8fa8bc 100%);
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #app {
+            width: 100%;
+            height: 100vh;
+            max-width: 375px;
+            background: linear-gradient(135deg, #5a7a8c 0%, #7a9aac 40%, #8fa8bc 100%);
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: lowercase;
+            letter-spacing: 0.8px;
+        }
+
+        .nav-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1.2px solid rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* CONTENT */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 12px;
+        }
+
+        .section {
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+            text-transform: lowercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        /* PROFILE INPUT */
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 6px;
+            text-transform: lowercase;
+            letter-spacing: 0.8px;
+            font-weight: 500;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border: 1.2px solid rgba(255, 255, 255, 0.28);
+            border-radius: 16px;
+            font-size: 14px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s;
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .input-field:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        }
+
+        /* SKIN TYPE BUTTONS */
+        .skin-type-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .skin-btn {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1.2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .skin-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .skin-btn.selected {
+            background: rgba(100, 200, 150, 0.4);
+            border-color: rgba(100, 200, 150, 0.7);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+        }
+
+        /* DAYS */
+        .day-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1.2px solid rgba(255, 255, 255, 0.22);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .day-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+        }
+
+        .period-section {
+            margin-bottom: 12px;
+        }
+
+        .period-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.65);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-input-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .step-num {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.65);
+            min-width: 18px;
+            font-weight: 600;
+        }
+
+        .step-input {
+            flex: 1;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1.2px solid rgba(255, 255, 255, 0.26);
+            border-radius: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.95);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            transition: all 0.3s;
+        }
+
+        .step-input::placeholder {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .step-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-remove {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 100, 100, 0.35);
+            border: 1.2px solid rgba(255, 100, 100, 0.55);
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-remove:hover {
+            background: rgba(255, 100, 100, 0.45);
+            border-color: rgba(255, 100, 100, 0.7);
+        }
+
+        .btn-add-step {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            background: rgba(100, 200, 150, 0.3);
+            border: 1.2px solid rgba(100, 200, 150, 0.55);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add-step:hover {
+            background: rgba(100, 200, 150, 0.42);
+            border-color: rgba(100, 200, 150, 0.75);
+        }
+
+        /* FOOTER BUTTONS */
+        .footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            padding: 13px;
+            background: rgba(100, 200, 150, 0.4);
+            border: 1.5px solid rgba(100, 200, 150, 0.7);
+            border-radius: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: rgba(100, 200, 150, 0.55);
+            border-color: rgba(100, 200, 150, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            padding: 13px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1.2px solid rgba(255, 255, 255, 0.28);
+            border-radius: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.17);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- HEADER -->
+        <div class="header">
+            <div>
+                <div class="header-title">Tu Rutina</div>
+                <div class="header-subtitle">personaliza tus pasos diarios</div>
+            </div>
+            <button class="nav-btn" onclick="window.location.href='main.html'">→</button>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- NOMBRE -->
+            <div class="section">
+                <div class="section-title">básico</div>
+                <div class="input-group">
+                    <div class="input-label">nombre</div>
+                    <input type="text" class="input-field" id="nameInput" placeholder="tu nombre">
+                </div>
+                <div class="input-group">
+                    <div class="input-label">tipo de piel</div>
+                    <div class="skin-type-buttons">
+                        <button class="skin-btn" data-type="Seca">Seca</button>
+                        <button class="skin-btn" data-type="Grasa">Grasa</button>
+                        <button class="skin-btn" data-type="Mixta">Mixta</button>
+                        <button class="skin-btn" data-type="Sensible">Sensible</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍAS -->
+            <div id="daysContainer"></div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <button class="btn-secondary" onclick="resetRoutine()">limpiar todo</button>
+            <button class="btn-primary" onclick="saveRoutine()">guardar rutina</button>
+        </div>
+    </div>
+
+    <script>
+        const DAYS = 3;
+        const PERIODS = ['AM', 'PM'];
+
+        let routineData = {};
+
+        function initializeRoutine() {
+            const saved = localStorage.getItem('skinCycleRoutine');
+            if (saved) {
+                routineData = JSON.parse(saved);
+            } else {
+                routineData = {
+                    name: '',
+                    skinType: '',
+                    days: {}
+                };
+                for (let i = 1; i <= DAYS; i++) {
+                    routineData.days[`day${i}`] = {
+                        AM: [],
+                        PM: []
+                    };
+                }
+            }
+            renderRoutine();
+            setupSkinTypeButtons();
+        }
+
+        function setupSkinTypeButtons() {
+            document.querySelectorAll('.skin-btn').forEach(btn => {
+                if (btn.dataset.type === routineData.skinType) {
+                    btn.classList.add('selected');
+                }
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    routineData.skinType = btn.dataset.type;
+                });
+            });
+        }
+
+        function renderRoutine() {
+            document.getElementById('nameInput').value = routineData.name || '';
+            document.getElementById('skinTypeInput').value = routineData.skinType || '';
+
+            const container = document.getElementById('daysContainer');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= DAYS; i++) {
+                const dayKey = `day${i}`;
+                const dayData = routineData.days[dayKey];
+
+                const daySection = document.createElement('div');
+                daySection.className = 'day-section';
+                daySection.innerHTML = `<div class="day-header">día ${i}</div>`;
+
+                PERIODS.forEach(period => {
+                    const periodDiv = document.createElement('div');
+                    periodDiv.className = 'period-section';
+                    periodDiv.innerHTML = `<div class="period-label">${period}</div>`;
+
+                    const stepsList = document.createElement('div');
+                    stepsList.className = 'steps-list';
+                    stepsList.id = `steps-${dayKey}-${period}`;
+
+                    (dayData[period] || []).forEach((step, idx) => {
+                        const stepEl = createStepInput(dayKey, period, idx, step);
+                        stepsList.appendChild(stepEl);
+                    });
+
+                    periodDiv.appendChild(stepsList);
+
+                    const addBtn = document.createElement('button');
+                    addBtn.className = 'btn-add-step';
+                    addBtn.textContent = '+ agregar paso';
+                    addBtn.type = 'button';
+                    addBtn.onclick = () => addStep(dayKey, period);
+                    periodDiv.appendChild(addBtn);
+
+                    daySection.appendChild(periodDiv);
+                });
+
+                container.appendChild(daySection);
+            }
+        }
+
+        function createStepInput(dayKey, period, index, value = '') {
+            const group = document.createElement('div');
+            group.className = 'step-input-group';
+
+            const num = document.createElement('span');
+            num.className = 'step-num';
+            num.textContent = `0${index + 1}`;
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'step-input';
+            input.placeholder = `paso ${index + 1}`;
+            input.value = value;
+            input.onchange = () => updateStep(dayKey, period, index, input.value);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'btn-remove';
+            removeBtn.textContent = '×';
+            removeBtn.type = 'button';
+            removeBtn.onclick = () => removeStep(dayKey, period, index);
+
+            group.appendChild(num);
+            group.appendChild(input);
+            group.appendChild(removeBtn);
+
+            return group;
+        }
+
+        function addStep(dayKey, period) {
+            if (!routineData.days[dayKey][period]) {
+                routineData.days[dayKey][period] = [];
+            }
+            routineData.days[dayKey][period].push('');
+            renderRoutine();
+        }
+
+        function removeStep(dayKey, period, index) {
+            routineData.days[dayKey][period].splice(index, 1);
+            renderRoutine();
+        }
+
+        function updateStep(dayKey, period, index, value) {
+            routineData.days[dayKey][period][index] = value;
+        }
+
+        function saveRoutine() {
+            routineData.name = document.getElementById('nameInput').value;
+            // skinType ya se actualiza desde los botones
+
+            localStorage.setItem('skinCycleRoutine', JSON.stringify(routineData));
+            localStorage.setItem('skinCycleCompleted', JSON.stringify({}));
+            
+            alert('✓ Rutina guardada');
+            window.location.href = 'main.html';
+        }
+
+        function resetRoutine() {
+            if (confirm('¿limpiar toda la rutina?')) {
+                routineData = {
+                    name: '',
+                    skinType: '',
+                    days: {}
+                };
+                for (let i = 1; i <= DAYS; i++) {
+                    routineData.days[`day${i}`] = { AM: [], PM: [] };
+                }
+                renderRoutine();
+            }
+        }
+
+        initializeRoutine();
+    </script>
+</body>
+</html>
