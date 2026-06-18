@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#5a7a9c">
+    <meta name="theme-color" content="#D4A5B5">
     <title>SkinCycle - Tu Rutina</title>
     
     <style>
@@ -17,7 +17,7 @@
             width: 100%;
             height: 100%;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #3d5f7f 0%, #5a7fa0 35%, #7a9fc8 100%);
+            background: linear-gradient(135deg, #F5E6E0 0%, #E0C5D0 35%, #D4A5B5 100%);
             background-attachment: fixed;
             overflow: hidden;
         }
@@ -32,7 +32,7 @@
             width: 100%;
             height: 100vh;
             max-width: 375px;
-            background: linear-gradient(135deg, #3d5f7f 0%, #5a7fa0 35%, #7a9fc8 100%);
+            background: linear-gradient(135deg, #F5E6E0 0%, #E0C5D0 35%, #D4A5B5 100%);
             background-attachment: fixed;
             position: relative;
             overflow-y: auto;
@@ -49,6 +49,26 @@
         ::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.4);
             border-radius: 2px;
+        }
+
+        /* RUIDO DE FONDO */
+        #app::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100%" height="100%" fill="%23000" opacity="0.02" filter="url(%23noise)" /></svg>');
+            background-size: 200px 200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #app > * {
+            position: relative;
+            z-index: 2;
         }
 
         /* HEADER */
