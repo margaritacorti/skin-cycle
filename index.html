@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#D4A8B8">
-    <title>SkinCycle - Tu Rutina</title>
+    <title>SkinCycle - Tu Rutina IA</title>
     
     <style>
         * {
@@ -50,7 +50,6 @@
             border-radius: 2px;
         }
 
-        /* RUIDO DE FONDO */
         #app::before {
             content: '';
             position: fixed;
@@ -70,7 +69,6 @@
             z-index: 2;
         }
 
-        /* HEADER */
         .header {
             display: flex;
             justify-content: space-between;
@@ -97,20 +95,12 @@
             letter-spacing: 0.8px;
         }
 
-        .header-date {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: lowercase;
-            letter-spacing: 0.8px;
-        }
-
         .nav-btn {
             width: 34px;
             height: 34px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.9);
             cursor: pointer;
@@ -124,10 +114,8 @@
         .nav-btn:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        /* CONTENT */
         .content {
             flex: 1;
             overflow-y: auto;
@@ -146,39 +134,6 @@
             flex-direction: column;
         }
 
-        /* TABS */
-        .tabs {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .tab {
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .tab.active {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
-            border-color: rgba(255, 255, 255, 0.35);
-            color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        /* ONBOARDING STEPS */
         .onboarding-step {
             display: flex;
             flex-direction: column;
@@ -186,7 +141,6 @@
             padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             flex: 1;
@@ -206,49 +160,18 @@
             text-align: center;
         }
 
-        /* SECTION */
-        .section {
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.72);
-            text-transform: lowercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        /* INPUT */
-        .input-group {
-            margin-bottom: 14px;
-        }
-
-        .input-label {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.78);
-            margin-bottom: 6px;
-            text-transform: lowercase;
-            letter-spacing: 0.8px;
-            font-weight: 500;
-        }
-
         .input-field {
             width: 100%;
             padding: 14px 16px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 14px;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 400;
             color: rgba(255, 255, 255, 0.98);
             transition: all 0.3s;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
 
         .input-field::placeholder {
@@ -258,13 +181,9 @@
         .input-field:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
             border-color: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
-        /* SKIN TYPE BUTTONS */
         .skin-type-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -275,7 +194,6 @@
             padding: 14px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             color: rgba(255, 255, 255, 0.85);
@@ -283,48 +201,33 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .skin-btn:hover {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
             border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
         .skin-btn.selected {
             background: rgba(110, 220, 160, 0.2);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
             border-color: rgba(110, 220, 160, 0.5);
             color: rgba(255, 255, 255, 0.98);
             font-weight: 600;
-            box-shadow: 0 8px 32px rgba(110, 220, 160, 0.2);
         }
 
-        /* DAY SECTION */
         .day-section {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             padding: 16px;
             margin-bottom: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .day-header {
             font-size: 14px;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 12px;
-        }
-
-        .period-section {
             margin-bottom: 12px;
         }
 
@@ -361,28 +264,18 @@
             padding: 10px 12px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1.2px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             font-size: 13px;
             color: rgba(255, 255, 255, 0.98);
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 400;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .step-input::placeholder {
-            color: rgba(255, 255, 255, 0.65);
         }
 
         .step-input:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .btn-remove {
@@ -390,27 +283,20 @@
             height: 32px;
             border-radius: 50%;
             background: rgba(255, 100, 100, 0.2);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1.2px solid rgba(255, 100, 100, 0.4);
             color: rgba(255, 255, 255, 0.95);
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
-            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(255, 100, 100, 0.12);
         }
 
         .btn-remove:hover {
             background: rgba(255, 100, 100, 0.3);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border-color: rgba(255, 100, 100, 0.55);
-            box-shadow: 0 8px 25px rgba(255, 100, 100, 0.18);
         }
 
         .btn-add-step {
@@ -419,7 +305,6 @@
             margin-top: 8px;
             background: rgba(110, 220, 160, 0.2);
             backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1.2px solid rgba(110, 220, 160, 0.4);
             border-radius: 30px;
             color: rgba(255, 255, 255, 0.95);
@@ -427,275 +312,13 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(110, 220, 160, 0.12);
         }
 
         .btn-add-step:hover {
             background: rgba(110, 220, 160, 0.3);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border-color: rgba(110, 220, 160, 0.55);
-            box-shadow: 0 8px 25px rgba(110, 220, 160, 0.18);
         }
 
-        /* ROUTINE WIDGET */
-        .routine-widget {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            padding: 16px;
-            margin-bottom: 14px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .routine-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .routine-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.98);
-        }
-
-        .routine-badge {
-            font-size: 12px;
-            padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .routine-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-bottom: 8px;
-        }
-
-        .routine-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.95);
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .routine-step:last-child {
-            border-bottom: none;
-        }
-
-        .step-circle {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-complete {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1.2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .btn-complete:hover {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .btn-complete.done {
-            background: rgba(110, 220, 160, 0.2);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border-color: rgba(110, 220, 160, 0.5);
-            color: rgba(255, 255, 255, 0.98);
-            font-weight: 600;
-            box-shadow: 0 8px 32px rgba(110, 220, 160, 0.18);
-        }
-
-        /* CALENDAR */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        .day-item {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1.2px solid rgba(255, 255, 255, 0.2);
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.85);
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .day-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-        }
-
-        .day-item.today {
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .day-item.completed {
-            background: rgba(110, 220, 160, 0.2);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border-color: rgba(110, 220, 160, 0.5);
-            color: rgba(255, 255, 255, 0.98);
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(110, 220, 160, 0.18);
-        }
-
-        /* DAY CARD */
-        .day-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1.2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            padding: 14px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .day-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 10px;
-        }
-
-        .period-content {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.88);
-            line-height: 1.6;
-            margin-bottom: 8px;
-        }
-
-        .period-content:last-child {
-            margin-bottom: 0;
-        }
-
-        .period-title {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-top: 8px;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        /* PROFILE CARD */
-        .profile-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1.2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            padding: 14px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .profile-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .profile-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .profile-label {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: lowercase;
-        }
-
-        .profile-value {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 500;
-        }
-
-        /* AI BUTTON */
-        .ai-button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 12px;
-            background: rgba(120, 170, 255, 0.2);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1.5px solid rgba(120, 170, 255, 0.4);
-            border-radius: 30px;
-            color: rgba(255, 255, 255, 0.98);
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(120, 170, 255, 0.12);
-        }
-
-        .ai-button:hover {
-            background: rgba(120, 170, 255, 0.3);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border-color: rgba(120, 170, 255, 0.55);
-            box-shadow: 0 8px 32px rgba(120, 170, 255, 0.18);
-        }
-
-        /* FOOTER */
         .footer {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -708,7 +331,6 @@
             padding: 13px;
             background: rgba(110, 220, 160, 0.2);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(110, 220, 160, 0.4);
             border-radius: 30px;
             color: rgba(255, 255, 255, 0.98);
@@ -716,23 +338,17 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(110, 220, 160, 0.12);
         }
 
         .btn-primary:hover {
             background: rgba(110, 220, 160, 0.3);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
             border-color: rgba(110, 220, 160, 0.6);
-            transform: translateY(-1px);
-            box-shadow: 0 8px 32px rgba(110, 220, 160, 0.18);
         }
 
         .btn-secondary {
             padding: 13px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1.2px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             color: rgba(255, 255, 255, 0.9);
@@ -740,31 +356,11 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        /* EMPTY STATE */
-        .empty-state {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* STEP NAVIGATION */
-        .step-nav {
-            display: flex;
-            gap: 12px;
-            justify-content: space-between;
         }
 
         .btn-back {
@@ -772,7 +368,6 @@
             padding: 13px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1.2px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             color: rgba(255, 255, 255, 0.9);
@@ -792,7 +387,6 @@
             padding: 13px;
             background: rgba(110, 220, 160, 0.2);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(110, 220, 160, 0.4);
             border-radius: 30px;
             color: rgba(255, 255, 255, 0.98);
@@ -813,6 +407,398 @@
             color: rgba(255, 255, 255, 0.6);
             margin-top: 8px;
         }
+
+        .step-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* CHAT MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 375px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(40px);
+            border-radius: 24px 24px 0 0;
+            height: 80vh;
+            z-index: 100;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-header {
+            padding: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-message {
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .chat-message.user {
+            background: rgba(110, 220, 160, 0.2);
+            color: rgba(0, 0, 0, 0.9);
+            align-self: flex-end;
+            max-width: 80%;
+        }
+
+        .chat-message.ai {
+            background: rgba(200, 200, 200, 0.2);
+            color: rgba(0, 0, 0, 0.8);
+            align-self: flex-start;
+            max-width: 95%;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(110, 220, 160, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 12px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            color: rgba(0, 0, 0, 0.7);
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .modal-input {
+            padding: 12px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 8px;
+        }
+
+        .modal-input input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            font-size: 13px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .modal-input input:focus {
+            outline: none;
+            border-color: rgba(110, 220, 160, 0.5);
+            box-shadow: 0 0 10px rgba(110, 220, 160, 0.2);
+        }
+
+        .modal-input button {
+            padding: 10px 16px;
+            background: rgba(110, 220, 160, 0.3);
+            border: 1px solid rgba(110, 220, 160, 0.5);
+            border-radius: 20px;
+            color: rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .modal-input button:hover {
+            background: rgba(110, 220, 160, 0.4);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 12px;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tab {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(40px);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .tab.active {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.35);
+            color: rgba(255, 255, 255, 0.98);
+        }
+
+        .routine-widget {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(40px);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .routine-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .routine-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.98);
+        }
+
+        .routine-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 8px;
+        }
+
+        .routine-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.95);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-complete {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1.2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ai-button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: rgba(120, 170, 255, 0.2);
+            backdrop-filter: blur(30px);
+            border: 1.5px solid rgba(120, 170, 255, 0.4);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.98);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ai-button:hover {
+            background: rgba(120, 170, 255, 0.3);
+            border-color: rgba(120, 170, 255, 0.55);
+        }
+
+        .empty-state {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .day-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1.2px solid rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .day-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(40px);
+        }
+
+        .day-item.completed {
+            background: rgba(110, 220, 160, 0.2);
+            border-color: rgba(110, 220, 160, 0.5);
+            color: rgba(255, 255, 255, 0.98);
+            font-weight: 600;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1.2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+
+        .day-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 10px;
+        }
+
+        .period-title {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 8px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .period-content {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1.2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+
+        .profile-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .profile-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: lowercase;
+        }
+
+        .profile-value {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .error-msg {
+            background: rgba(255, 100, 100, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin: 8px 0;
+        }
+
+        .info-msg {
+            background: rgba(120, 170, 255, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin: 8px 0;
+        }
     </style>
 </head>
 <body>
@@ -828,8 +814,18 @@
             </div>
 
             <div class="content">
+                <!-- STEP 0: HF TOKEN -->
+                <div id="step0" class="onboarding-step active">
+                    <div class="step-title">🤖 Activa la IA</div>
+                    <div class="step-subtitle">Pega tu token de Hugging Face (gratis)</div>
+                    <input type="password" class="input-field" id="hfToken" placeholder="hf_xxxxxxxxxxxxx">
+                    <div class="info-msg" style="font-size: 11px;">
+                        ¿No tienes token? Ve a <strong>huggingface.co</strong> → Settings → Access Tokens → New Token
+                    </div>
+                </div>
+
                 <!-- STEP 1: NOMBRE -->
-                <div id="step1" class="onboarding-step active">
+                <div id="step1" class="onboarding-step">
                     <div class="step-title">¿Cuál es tu nombre?</div>
                     <div class="step-subtitle">Vamos a empezar</div>
                     <input type="text" class="input-field" id="nameInput1" placeholder="tu nombre" maxlength="30">
@@ -860,7 +856,7 @@
                     <button class="btn-back" id="backBtn" onclick="previousStep()" style="display: none;">← atrás</button>
                     <button class="btn-next" id="nextBtn" onclick="nextStep()">siguiente →</button>
                 </div>
-                <div class="step-counter" id="stepCounter">paso 1 de 3</div>
+                <div class="step-counter" id="stepCounter">paso 1 de 4</div>
             </div>
         </div>
 
@@ -869,7 +865,7 @@
             <div class="header">
                 <div class="header-left">
                     <div class="header-title">SkinCycle</div>
-                    <div class="header-date" id="headerDate"></div>
+                    <div class="header-subtitle" id="headerDate"></div>
                 </div>
                 <button class="nav-btn" onclick="showPage('createPage')">✏️</button>
             </div>
@@ -881,12 +877,10 @@
             </div>
 
             <div class="content">
-                <!-- TAB: HOY -->
                 <div id="daily" class="view active">
                     <div class="routine-widget">
                         <div class="routine-header">
                             <div class="routine-title" id="ampmTitle">AM</div>
-                            <div class="routine-badge" id="ampmBadge">☀️</div>
                         </div>
                         <div class="routine-steps" id="dailySteps"></div>
                         <button class="btn-complete" id="completeBtn">marcar como completada</button>
@@ -895,18 +889,16 @@
                     <div class="routine-widget">
                         <div class="routine-header">
                             <div class="routine-title" id="otherPeriodTitle">PM</div>
-                            <div class="routine-badge" id="otherBadge">🌙</div>
                         </div>
                         <div class="routine-steps" id="otherSteps"></div>
                     </div>
 
-                    <button class="ai-button" onclick="alert('Chat con IA - próximamente conectado con Claude')">💬 hablar con IA</button>
+                    <button class="ai-button" onclick="openAIChat()">💬 obtener recomendaciones IA</button>
                 </div>
 
-                <!-- TAB: TRACKER -->
                 <div id="calendar" class="view">
                     <div class="calendar-grid" id="calendarGrid"></div>
-                    <div class="section-title">detalles</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.72); text-transform: lowercase; letter-spacing: 1px; margin-bottom: 12px; font-weight: 500;">detalles</div>
                     <div class="profile-card">
                         <div class="profile-item">
                             <span class="profile-label">días completados</span>
@@ -919,7 +911,6 @@
                     </div>
                 </div>
 
-                <!-- TAB: RUTINA -->
                 <div id="routine" class="view">
                     <div id="routineContent"></div>
                     <div class="profile-card">
@@ -938,12 +929,27 @@
         </div>
     </div>
 
+    <!-- CHAT MODAL -->
+    <div id="chatModal" class="modal">
+        <div class="modal-header">
+            <div class="modal-title">💭 IA Skincare</div>
+            <button class="modal-close" onclick="closeAIChat()">✕</button>
+        </div>
+        <div class="modal-content" id="chatContent"></div>
+        <div class="modal-input">
+            <input type="text" id="userInput" placeholder="describe tu problema de piel..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">enviar</button>
+        </div>
+    </div>
+
     <script>
         const DAYS = 3;
         const PERIODS = ['AM', 'PM'];
-        let currentStep = 1;
+        let currentStep = 0;
         let routineData = {};
         let completed = {};
+        let hfToken = '';
+        let chatHistory = [];
 
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -955,7 +961,16 @@
         }
 
         function nextStep() {
-            if (currentStep === 1) {
+            if (currentStep === 0) {
+                const token = document.getElementById('hfToken').value.trim();
+                if (!token) {
+                    alert('Por favor pega tu token de Hugging Face');
+                    return;
+                }
+                hfToken = token;
+                localStorage.setItem('hfToken', token);
+                currentStep = 1;
+            } else if (currentStep === 1) {
                 const name = document.getElementById('nameInput1').value.trim();
                 if (!name) {
                     alert('Por favor ingresa tu nombre');
@@ -977,7 +992,7 @@
         }
 
         function previousStep() {
-            if (currentStep > 1) {
+            if (currentStep > 0) {
                 currentStep--;
                 updateStep();
             }
@@ -987,9 +1002,9 @@
             document.querySelectorAll('.onboarding-step').forEach(el => el.classList.remove('active'));
             document.getElementById(`step${currentStep}`).classList.add('active');
             
-            document.getElementById('backBtn').style.display = currentStep > 1 ? 'block' : 'none';
+            document.getElementById('backBtn').style.display = currentStep > 0 ? 'block' : 'none';
             document.getElementById('nextBtn').textContent = currentStep === 3 ? 'guardar rutina ✓' : 'siguiente →';
-            document.getElementById('stepCounter').textContent = `paso ${currentStep} de 3`;
+            document.getElementById('stepCounter').textContent = `paso ${currentStep + 1} de 4`;
 
             if (currentStep === 2) {
                 setupSkinTypeButtons();
@@ -1013,6 +1028,10 @@
 
         function initCreatePage() {
             const saved = localStorage.getItem('skinCycleRoutine');
+            const token = localStorage.getItem('hfToken');
+            
+            if (token) hfToken = token;
+            
             if (saved) {
                 routineData = JSON.parse(saved);
                 currentStep = 3;
@@ -1025,7 +1044,7 @@
                 for (let i = 1; i <= DAYS; i++) {
                     routineData.days[`day${i}`] = { AM: [], PM: [] };
                 }
-                currentStep = 1;
+                currentStep = 0;
             }
             updateStep();
         }
@@ -1044,7 +1063,6 @@
 
                 PERIODS.forEach(period => {
                     const periodDiv = document.createElement('div');
-                    periodDiv.className = 'period-section';
                     periodDiv.innerHTML = `<div class="period-label">${period}</div>`;
 
                     const stepsList = document.createElement('div');
@@ -1084,7 +1102,7 @@
             input.className = 'step-input';
             input.placeholder = `paso ${index + 1}`;
             input.value = value;
-            input.onchange = () => updateStep(dayKey, period, index, input.value);
+            input.onchange = () => updateStepValue(dayKey, period, index, input.value);
 
             const removeBtn = document.createElement('button');
             removeBtn.className = 'btn-remove';
@@ -1112,7 +1130,7 @@
             renderRoutine();
         }
 
-        function updateStep(dayKey, period, index, value) {
+        function updateStepValue(dayKey, period, index, value) {
             routineData.days[dayKey][period][index] = value;
         }
 
@@ -1120,6 +1138,108 @@
             localStorage.setItem('skinCycleRoutine', JSON.stringify(routineData));
             localStorage.setItem('skinCycleCompleted', JSON.stringify({}));
             showPage('dashboardPage');
+        }
+
+        function openAIChat() {
+            if (!hfToken) {
+                alert('Primero debes configurar tu token de Hugging Face');
+                showPage('createPage');
+                return;
+            }
+            document.getElementById('chatModal').classList.add('active');
+            chatHistory = [];
+            updateChatDisplay();
+        }
+
+        function closeAIChat() {
+            document.getElementById('chatModal').classList.remove('active');
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            chatHistory.push({ role: 'user', content: message });
+            input.value = '';
+            updateChatDisplay();
+
+            const content = document.getElementById('chatContent');
+            content.innerHTML += '<div class="loading">⏳ Consultando con la IA...</div>';
+            content.scrollTop = content.scrollHeight;
+
+            try {
+                const systemPrompt = `Eres un experto en skincare K-beauty. El usuario tiene piel ${routineData.skinType || 'mixta'}.
+                Analiza su problema y recomienda máximo 3-4 productos específicos del mercado K-beauty.
+                Responde en JSON con estructura:
+                {
+                  "analisis": "Breve análisis del problema",
+                  "productos": [
+                    {"nombre": "Nombre exacto", "marca": "Marca", "beneficios": "Por qué es bueno", "uso": "Cómo aplicar", "precio_aprox": "$"}
+                  ]
+                }`;
+
+                const response = await fetch('https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${hfToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        inputs: `${systemPrompt}\n\nUsuario: ${message}`
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${await response.text()}`);
+                }
+
+                const data = await response.json();
+                let aiMessage = data[0]?.generated_text || 'No pude procesar tu mensaje';
+
+                chatHistory.push({ role: 'ai', content: aiMessage });
+                updateChatDisplay();
+
+            } catch (error) {
+                chatHistory.push({ role: 'ai', content: `❌ Error: ${error.message}. Verifica tu token de HF.` });
+                updateChatDisplay();
+            }
+        }
+
+        function updateChatDisplay() {
+            const content = document.getElementById('chatContent');
+            content.innerHTML = '';
+
+            chatHistory.forEach(msg => {
+                const msgEl = document.createElement('div');
+                msgEl.className = `chat-message ${msg.role}`;
+                
+                if (msg.role === 'ai') {
+                    try {
+                        const json = JSON.parse(msg.content);
+                        msgEl.innerHTML = `
+                            <div><strong>📊 Análisis:</strong> ${json.analisis || ''}</div>
+                            ${json.productos?.map(p => `
+                                <div class="product-card">
+                                    <div class="product-name">✨ ${p.nombre} (${p.marca})</div>
+                                    <div class="product-desc"><strong>Beneficios:</strong> ${p.beneficios}</div>
+                                    <div class="product-desc"><strong>Uso:</strong> ${p.uso}</div>
+                                    <div class="product-desc"><strong>Precio aprox:</strong> ${p.precio_aprox}</div>
+                                </div>
+                            `).join('') || ''}
+                        `;
+                    } catch {
+                        msgEl.textContent = msg.content;
+                    }
+                } else {
+                    msgEl.textContent = msg.content;
+                }
+                
+                content.appendChild(msgEl);
+            });
+
+            content.scrollTop = content.scrollHeight;
         }
 
         function initDashboard() {
@@ -1139,51 +1259,37 @@
             const hour = new Date().getHours();
             const isAM = hour < 17;
             const today = new Date().toISOString().split('T')[0];
-            const isCompletedToday = completed[today];
 
-            const currentPeriod = isAM ? 'AM' : 'PM';
-            const otherPeriod = isAM ? 'PM' : 'AM';
-
-            document.getElementById('ampmTitle').textContent = currentPeriod;
-            document.getElementById('ampmBadge').textContent = isAM ? '☀️' : '🌙';
-            document.getElementById('otherPeriodTitle').textContent = otherPeriod;
-            document.getElementById('otherBadge').textContent = isAM ? '🌙' : '☀️';
+            document.getElementById('ampmTitle').textContent = isAM ? 'AM ☀️' : 'PM 🌙';
+            document.getElementById('otherPeriodTitle').textContent = isAM ? 'PM 🌙' : 'AM ☀️';
 
             const currentDay = routine.days?.day1 || {};
-            const currentSteps = currentDay[currentPeriod] || [];
-            const currentEl = document.getElementById('dailySteps');
-            currentEl.innerHTML = '';
-            if (currentSteps.length === 0) {
-                currentEl.innerHTML = '<div class="empty-state">crea tu rutina en "tu rutina"</div>';
-            } else {
-                currentSteps.forEach((step, i) => {
-                    const stepEl = document.createElement('div');
-                    stepEl.className = 'routine-step';
-                    stepEl.innerHTML = `<div class="step-circle">${String(i + 1).padStart(2, '0')}</div><span>${step}</span>`;
-                    currentEl.appendChild(stepEl);
-                });
-            }
+            const renderSteps = (period) => {
+                const steps = currentDay[period] || [];
+                const el = document.getElementById(period === 'AM' ? 'dailySteps' : 'otherSteps');
+                el.innerHTML = '';
+                if (steps.length === 0) {
+                    el.innerHTML = '<div class="empty-state">sin pasos</div>';
+                } else {
+                    steps.forEach((step, i) => {
+                        const stepEl = document.createElement('div');
+                        stepEl.className = 'routine-step';
+                        stepEl.innerHTML = `<div class="step-circle">${String(i + 1).padStart(2, '0')}</div><span>${step}</span>`;
+                        el.appendChild(stepEl);
+                    });
+                }
+            };
 
-            const otherSteps = currentDay[otherPeriod] || [];
-            const otherEl = document.getElementById('otherSteps');
-            otherEl.innerHTML = '';
-            if (otherSteps.length === 0) {
-                otherEl.innerHTML = '<div class="empty-state">sin pasos aún</div>';
-            } else {
-                otherSteps.forEach((step, i) => {
-                    const stepEl = document.createElement('div');
-                    stepEl.className = 'routine-step';
-                    stepEl.innerHTML = `<div class="step-circle">${String(i + 1).padStart(2, '0')}</div><span>${step}</span>`;
-                    otherEl.appendChild(stepEl);
-                });
-            }
+            renderSteps('AM');
+            renderSteps('PM');
 
             const completeBtn = document.getElementById('completeBtn');
-            if (isCompletedToday) {
+            if (completed[today]) {
                 completeBtn.classList.add('done');
                 completeBtn.textContent = '✓ completada hoy';
+                completeBtn.style.background = 'rgba(110, 220, 160, 0.2)';
+                completeBtn.style.borderColor = 'rgba(110, 220, 160, 0.5)';
             } else {
-                completeBtn.classList.remove('done');
                 completeBtn.textContent = 'marcar como completada';
             }
             completeBtn.onclick = () => {
@@ -1203,12 +1309,10 @@
                 date.setDate(date.getDate() - i);
                 const dateStr = date.toISOString().split('T')[0];
                 const dayNum = date.getDate();
-                const isToday = dateStr === today;
                 const isDone = completed[dateStr];
 
                 const dayEl = document.createElement('div');
                 dayEl.className = 'day-item';
-                if (isToday) dayEl.classList.add('today');
                 if (isDone) dayEl.classList.add('completed');
                 dayEl.textContent = dayNum;
                 dayEl.onclick = () => {
