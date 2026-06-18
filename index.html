@@ -55,9 +55,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             padding-bottom: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-left {
+            flex: 1;
         }
 
         .header-title {
@@ -67,7 +71,14 @@
         }
 
         .header-subtitle {
-            font-size: 12px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: lowercase;
+            letter-spacing: 0.8px;
+        }
+
+        .header-date {
+            font-size: 11px;
             color: rgba(255, 255, 255, 0.6);
             text-transform: lowercase;
             letter-spacing: 0.8px;
@@ -100,6 +111,43 @@
             margin-bottom: 12px;
         }
 
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* TABS */
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tab {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1.2px solid rgba(255, 255, 255, 0.22);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .tab.active {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.35);
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* SECTION */
         .section {
             margin-bottom: 16px;
         }
@@ -113,7 +161,7 @@
             font-weight: 500;
         }
 
-        /* PROFILE INPUT */
+        /* INPUT */
         .input-group {
             margin-bottom: 14px;
         }
@@ -184,7 +232,7 @@
             font-weight: 600;
         }
 
-        /* DAYS */
+        /* DAY SECTION */
         .day-section {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
@@ -298,7 +346,228 @@
             border-color: rgba(100, 200, 150, 0.75);
         }
 
-        /* FOOTER BUTTONS */
+        /* ROUTINE WIDGET */
+        .routine-widget {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(28px);
+            border: 1.2px solid rgba(255, 255, 255, 0.22);
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .routine-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .routine-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .routine-badge {
+            font-size: 12px;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .routine-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 8px;
+        }
+
+        .routine-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .routine-step:last-child {
+            border-bottom: none;
+        }
+
+        .step-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.85);
+            flex-shrink: 0;
+        }
+
+        .btn-complete {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1.2px solid rgba(255, 255, 255, 0.28);
+            border-radius: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-complete:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-complete.done {
+            background: rgba(120, 200, 150, 0.35);
+            border-color: rgba(120, 200, 150, 0.6);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+        }
+
+        /* CALENDAR */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .day-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1.2px solid rgba(255, 255, 255, 0.22);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .day-item:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .day-item.today {
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .day-item.completed {
+            background: rgba(120, 200, 150, 0.35);
+            border-color: rgba(120, 200, 150, 0.55);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+        }
+
+        /* DAY CARD */
+        .day-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1.2px solid rgba(255, 255, 255, 0.22);
+            border-radius: 18px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+
+        .day-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+        }
+
+        .period-content {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .period-content:last-child {
+            margin-bottom: 0;
+        }
+
+        .period-title {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 8px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        /* PROFILE CARD */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1.2px solid rgba(255, 255, 255, 0.22);
+            border-radius: 18px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+
+        .profile-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .profile-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .profile-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: lowercase;
+        }
+
+        .profile-value {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* AI BUTTON */
+        .ai-button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: rgba(100, 150, 255, 0.3);
+            border: 1.5px solid rgba(100, 150, 255, 0.55);
+            border-radius: 14px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ai-button:hover {
+            background: rgba(100, 150, 255, 0.42);
+            border-color: rgba(100, 150, 255, 0.75);
+        }
+
+        /* FOOTER */
         .footer {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -342,47 +611,126 @@
             border-color: rgba(255, 255, 255, 0.4);
             transform: translateY(-1px);
         }
+
+        /* EMPTY STATE */
+        .empty-state {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            padding: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- HEADER -->
-        <div class="header">
-            <div>
-                <div class="header-title">Tu Rutina</div>
-                <div class="header-subtitle">personaliza tus pasos diarios</div>
-            </div>
-            <button class="nav-btn" onclick="window.location.href='main.html'">→</button>
-        </div>
-
-        <!-- CONTENT -->
-        <div class="content">
-            <!-- NOMBRE -->
-            <div class="section">
-                <div class="section-title">básico</div>
-                <div class="input-group">
-                    <div class="input-label">nombre</div>
-                    <input type="text" class="input-field" id="nameInput" placeholder="tu nombre">
+        <!-- PAGE 1: CREAR RUTINA -->
+        <div id="createPage" class="page active">
+            <div class="header">
+                <div>
+                    <div class="header-title">Tu Rutina</div>
+                    <div class="header-subtitle">personaliza tus pasos diarios</div>
                 </div>
-                <div class="input-group">
-                    <div class="input-label">tipo de piel</div>
-                    <div class="skin-type-buttons">
-                        <button class="skin-btn" data-type="Seca">Seca</button>
-                        <button class="skin-btn" data-type="Grasa">Grasa</button>
-                        <button class="skin-btn" data-type="Mixta">Mixta</button>
-                        <button class="skin-btn" data-type="Sensible">Sensible</button>
+                <button class="nav-btn" onclick="showPage('dashboardPage')">→</button>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <div class="section-title">básico</div>
+                    <div class="input-group">
+                        <div class="input-label">nombre</div>
+                        <input type="text" class="input-field" id="nameInput" placeholder="tu nombre">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label">tipo de piel</div>
+                        <div class="skin-type-buttons">
+                            <button class="skin-btn" data-type="Seca">Seca</button>
+                            <button class="skin-btn" data-type="Grasa">Grasa</button>
+                            <button class="skin-btn" data-type="Mixta">Mixta</button>
+                            <button class="skin-btn" data-type="Sensible">Sensible</button>
+                        </div>
                     </div>
                 </div>
+
+                <div id="daysContainer"></div>
             </div>
 
-            <!-- DÍAS -->
-            <div id="daysContainer"></div>
+            <div class="footer">
+                <button class="btn-secondary" onclick="resetRoutine()">limpiar todo</button>
+                <button class="btn-primary" onclick="saveRoutine()">guardar rutina</button>
+            </div>
         </div>
 
-        <!-- FOOTER -->
-        <div class="footer">
-            <button class="btn-secondary" onclick="resetRoutine()">limpiar todo</button>
-            <button class="btn-primary" onclick="saveRoutine()">guardar rutina</button>
+        <!-- PAGE 2: DASHBOARD -->
+        <div id="dashboardPage" class="page">
+            <div class="header">
+                <div class="header-left">
+                    <div class="header-title">SkinCycle</div>
+                    <div class="header-date" id="headerDate"></div>
+                </div>
+                <button class="nav-btn" onclick="showPage('createPage')">✏️</button>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('daily', event)">hoy</button>
+                <button class="tab" onclick="switchTab('calendar', event)">tracker</button>
+                <button class="tab" onclick="switchTab('routine', event)">rutina</button>
+            </div>
+
+            <div class="content">
+                <!-- TAB: HOY -->
+                <div id="daily" class="view active">
+                    <div class="routine-widget">
+                        <div class="routine-header">
+                            <div class="routine-title" id="ampmTitle">AM</div>
+                            <div class="routine-badge" id="ampmBadge">☀️</div>
+                        </div>
+                        <div class="routine-steps" id="dailySteps"></div>
+                        <button class="btn-complete" id="completeBtn">marcar como completada</button>
+                    </div>
+
+                    <div class="routine-widget">
+                        <div class="routine-header">
+                            <div class="routine-title" id="otherPeriodTitle">PM</div>
+                            <div class="routine-badge" id="otherBadge">🌙</div>
+                        </div>
+                        <div class="routine-steps" id="otherSteps"></div>
+                    </div>
+
+                    <button class="ai-button" onclick="alert('Chat con IA - próximamente conectado con Claude')">💬 hablar con IA</button>
+                </div>
+
+                <!-- TAB: TRACKER -->
+                <div id="calendar" class="view">
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                    <div class="section-title">detalles</div>
+                    <div class="profile-card">
+                        <div class="profile-item">
+                            <span class="profile-label">días completados</span>
+                            <span class="profile-value" id="completedCount">0</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">racha actual</span>
+                            <span class="profile-value" id="streakCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: RUTINA -->
+                <div id="routine" class="view">
+                    <div id="routineContent"></div>
+                    <div class="profile-card">
+                        <div class="profile-item">
+                            <span class="profile-label">tu nombre</span>
+                            <span class="profile-value" id="profileName">—</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">tipo de piel</span>
+                            <span class="profile-value" id="profileSkinType">—</span>
+                        </div>
+                    </div>
+                    <button class="btn-secondary" onclick="showPage('createPage')" style="width:100%;margin-top:10px;">editar rutina</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -391,8 +739,18 @@
         const PERIODS = ['AM', 'PM'];
 
         let routineData = {};
+        let completed = {};
 
-        function initializeRoutine() {
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if (pageId === 'dashboardPage') {
+                initDashboard();
+            }
+        }
+
+        function initCreatePage() {
             const saved = localStorage.getItem('skinCycleRoutine');
             if (saved) {
                 routineData = JSON.parse(saved);
@@ -403,32 +761,15 @@
                     days: {}
                 };
                 for (let i = 1; i <= DAYS; i++) {
-                    routineData.days[`day${i}`] = {
-                        AM: [],
-                        PM: []
-                    };
+                    routineData.days[`day${i}`] = { AM: [], PM: [] };
                 }
             }
             renderRoutine();
             setupSkinTypeButtons();
         }
 
-        function setupSkinTypeButtons() {
-            document.querySelectorAll('.skin-btn').forEach(btn => {
-                if (btn.dataset.type === routineData.skinType) {
-                    btn.classList.add('selected');
-                }
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('selected'));
-                    btn.classList.add('selected');
-                    routineData.skinType = btn.dataset.type;
-                });
-            });
-        }
-
         function renderRoutine() {
             document.getElementById('nameInput').value = routineData.name || '';
-            document.getElementById('skinTypeInput').value = routineData.skinType || '';
 
             const container = document.getElementById('daysContainer');
             container.innerHTML = '';
@@ -499,6 +840,19 @@
             return group;
         }
 
+        function setupSkinTypeButtons() {
+            document.querySelectorAll('.skin-btn').forEach(btn => {
+                if (btn.dataset.type === routineData.skinType) {
+                    btn.classList.add('selected');
+                }
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    routineData.skinType = btn.dataset.type;
+                });
+            });
+        }
+
         function addStep(dayKey, period) {
             if (!routineData.days[dayKey][period]) {
                 routineData.days[dayKey][period] = [];
@@ -518,13 +872,10 @@
 
         function saveRoutine() {
             routineData.name = document.getElementById('nameInput').value;
-            // skinType ya se actualiza desde los botones
-
             localStorage.setItem('skinCycleRoutine', JSON.stringify(routineData));
             localStorage.setItem('skinCycleCompleted', JSON.stringify({}));
-            
             alert('✓ Rutina guardada');
-            window.location.href = 'main.html';
+            showPage('dashboardPage');
         }
 
         function resetRoutine() {
@@ -541,7 +892,167 @@
             }
         }
 
-        initializeRoutine();
+        function initDashboard() {
+            routine = JSON.parse(localStorage.getItem('skinCycleRoutine')) || {};
+            completed = JSON.parse(localStorage.getItem('skinCycleCompleted')) || {};
+
+            const dateOpts = { weekday: 'short', day: 'numeric', month: 'short' };
+            const today = new Date().toLocaleDateString('es-ES', dateOpts);
+            document.getElementById('headerDate').textContent = today;
+
+            renderDaily();
+            renderCalendar();
+            renderRoutineView();
+        }
+
+        function renderDaily() {
+            const hour = new Date().getHours();
+            const isAM = hour < 17;
+            const today = new Date().toISOString().split('T')[0];
+            const isCompletedToday = completed[today];
+
+            const currentPeriod = isAM ? 'AM' : 'PM';
+            const otherPeriod = isAM ? 'PM' : 'AM';
+
+            document.getElementById('ampmTitle').textContent = currentPeriod;
+            document.getElementById('ampmBadge').textContent = isAM ? '☀️' : '🌙';
+            document.getElementById('otherPeriodTitle').textContent = otherPeriod;
+            document.getElementById('otherBadge').textContent = isAM ? '🌙' : '☀️';
+
+            const currentDay = routine.days?.day1 || {};
+            const currentSteps = currentDay[currentPeriod] || [];
+            const currentEl = document.getElementById('dailySteps');
+            currentEl.innerHTML = '';
+            if (currentSteps.length === 0) {
+                currentEl.innerHTML = '<div class="empty-state">crea tu rutina en "tu rutina"</div>';
+            } else {
+                currentSteps.forEach((step, i) => {
+                    const stepEl = document.createElement('div');
+                    stepEl.className = 'routine-step';
+                    stepEl.innerHTML = `
+                        <div class="step-circle">${String(i + 1).padStart(2, '0')}</div>
+                        <span>${step}</span>
+                    `;
+                    currentEl.appendChild(stepEl);
+                });
+            }
+
+            const otherSteps = currentDay[otherPeriod] || [];
+            const otherEl = document.getElementById('otherSteps');
+            otherEl.innerHTML = '';
+            if (otherSteps.length === 0) {
+                otherEl.innerHTML = '<div class="empty-state">sin pasos aún</div>';
+            } else {
+                otherSteps.forEach((step, i) => {
+                    const stepEl = document.createElement('div');
+                    stepEl.className = 'routine-step';
+                    stepEl.innerHTML = `
+                        <div class="step-circle">${String(i + 1).padStart(2, '0')}</div>
+                        <span>${step}</span>
+                    `;
+                    otherEl.appendChild(stepEl);
+                });
+            }
+
+            const completeBtn = document.getElementById('completeBtn');
+            if (isCompletedToday) {
+                completeBtn.classList.add('done');
+                completeBtn.textContent = '✓ completada hoy';
+            } else {
+                completeBtn.classList.remove('done');
+                completeBtn.textContent = 'marcar como completada';
+            }
+            completeBtn.onclick = () => {
+                completed[today] = !completed[today];
+                localStorage.setItem('skinCycleCompleted', JSON.stringify(completed));
+                renderDaily();
+            };
+        }
+
+        function renderCalendar() {
+            const calendarEl = document.getElementById('calendarGrid');
+            calendarEl.innerHTML = '';
+            const today = new Date().toISOString().split('T')[0];
+
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                const dayNum = date.getDate();
+                const isToday = dateStr === today;
+                const isDone = completed[dateStr];
+
+                const dayEl = document.createElement('div');
+                dayEl.className = 'day-item';
+                if (isToday) dayEl.classList.add('today');
+                if (isDone) dayEl.classList.add('completed');
+                dayEl.textContent = dayNum;
+                dayEl.onclick = () => {
+                    completed[dateStr] = !completed[dateStr];
+                    localStorage.setItem('skinCycleCompleted', JSON.stringify(completed));
+                    renderCalendar();
+                };
+                calendarEl.appendChild(dayEl);
+            }
+
+            const totalDone = Object.values(completed).filter(Boolean).length;
+            document.getElementById('completedCount').textContent = totalDone;
+
+            let streak = 0;
+            for (let i = 0; i < 365; i++) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const ds = d.toISOString().split('T')[0];
+                if (completed[ds]) streak++;
+                else break;
+            }
+            document.getElementById('streakCount').textContent = streak;
+        }
+
+        function renderRoutineView() {
+            const content = document.getElementById('routineContent');
+            content.innerHTML = '';
+
+            document.getElementById('profileName').textContent = routine.name || '—';
+            document.getElementById('profileSkinType').textContent = routine.skinType || '—';
+
+            const days = routine.days || {};
+            for (let i = 1; i <= 3; i++) {
+                const dayKey = `day${i}`;
+                const dayData = days[dayKey] || { AM: [], PM: [] };
+
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card';
+                dayCard.innerHTML = `<div class="day-name">día ${i}</div>`;
+
+                ['AM', 'PM'].forEach(period => {
+                    const steps = dayData[period] || [];
+                    if (steps.length > 0) {
+                        let html = `<div class="period-title">${period}</div>`;
+                        steps.forEach((step, idx) => {
+                            html += `<div class="period-content">0${idx + 1} ${step}</div>`;
+                        });
+                        dayCard.innerHTML += html;
+                    }
+                });
+
+                content.appendChild(dayCard);
+            }
+        }
+
+        function switchTab(tabName, event) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        let routine = {};
+
+        // Inicializar
+        window.addEventListener('load', () => {
+            initCreatePage();
+        });
     </script>
 </body>
 </html>
