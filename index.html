@@ -132,6 +132,9 @@
             flex: 1;
             overflow-y: auto;
             margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .page {
@@ -175,6 +178,34 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
+        /* ONBOARDING STEPS */
+        .onboarding-step {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.98);
+            text-align: center;
+        }
+
+        .step-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
         /* SECTION */
         .section {
             margin-bottom: 16px;
@@ -205,18 +236,19 @@
 
         .input-field {
             width: 100%;
-            padding: 12px 14px;
+            padding: 14px 16px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            font-size: 14px;
+            font-size: 16px;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.98);
             transition: all 0.3s;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .input-field::placeholder {
@@ -236,18 +268,18 @@
         .skin-type-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
         }
 
         .skin-btn {
-            padding: 12px;
+            padding: 14px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             color: rgba(255, 255, 255, 0.85);
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
@@ -438,7 +470,7 @@
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 30px;
             color: rgba(255, 255, 255, 0.85);
         }
 
@@ -528,7 +560,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 30px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
@@ -727,44 +759,108 @@
             padding: 20px;
             text-align: center;
         }
+
+        /* STEP NAVIGATION */
+        .step-nav {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        .btn-back {
+            flex: 1;
+            padding: 13px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1.2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-next {
+            flex: 1;
+            padding: 13px;
+            background: rgba(110, 220, 160, 0.2);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1.5px solid rgba(110, 220, 160, 0.4);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.98);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-next:hover {
+            background: rgba(110, 220, 160, 0.3);
+            border-color: rgba(110, 220, 160, 0.6);
+        }
+
+        .step-counter {
+            text-align: center;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- PAGE 1: CREAR RUTINA -->
+        <!-- PAGE 1: ONBOARDING -->
         <div id="createPage" class="page active">
             <div class="header">
                 <div>
-                    <div class="header-title">Tu Rutina</div>
-                    <div class="header-subtitle">personaliza tus pasos diarios</div>
+                    <div class="header-title">SkinCycle</div>
+                    <div class="header-subtitle">armemos tu rutina</div>
                 </div>
                 <button class="nav-btn" onclick="showPage('dashboardPage')">→</button>
             </div>
 
             <div class="content">
-                <div class="section">
-                    <div class="section-title">básico</div>
-                    <div class="input-group">
-                        <div class="input-label">nombre</div>
-                        <input type="text" class="input-field" id="nameInput" placeholder="tu nombre">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-label">tipo de piel</div>
-                        <div class="skin-type-buttons">
-                            <button class="skin-btn" data-type="Seca">Seca</button>
-                            <button class="skin-btn" data-type="Grasa">Grasa</button>
-                            <button class="skin-btn" data-type="Mixta">Mixta</button>
-                            <button class="skin-btn" data-type="Sensible">Sensible</button>
-                        </div>
+                <!-- STEP 1: NOMBRE -->
+                <div id="step1" class="onboarding-step active">
+                    <div class="step-title">¿Cuál es tu nombre?</div>
+                    <div class="step-subtitle">Vamos a empezar</div>
+                    <input type="text" class="input-field" id="nameInput1" placeholder="tu nombre" maxlength="30">
+                </div>
+
+                <!-- STEP 2: TIPO DE PIEL -->
+                <div id="step2" class="onboarding-step">
+                    <div class="step-title">¿Qué tipo de piel tienes?</div>
+                    <div class="step-subtitle">Para personalizar tu rutina</div>
+                    <div class="skin-type-buttons">
+                        <button class="skin-btn" data-type="Seca">Seca</button>
+                        <button class="skin-btn" data-type="Grasa">Grasa</button>
+                        <button class="skin-btn" data-type="Mixta">Mixta</button>
+                        <button class="skin-btn" data-type="Sensible">Sensible</button>
                     </div>
                 </div>
 
-                <div id="daysContainer"></div>
+                <!-- STEP 3: RUTINA -->
+                <div id="step3" class="onboarding-step">
+                    <div class="step-title">Armemos tu rutina</div>
+                    <div class="step-subtitle">Agrega los pasos para cada día</div>
+                    <div id="daysContainer" style="flex: 1; overflow-y: auto;"></div>
+                </div>
             </div>
 
             <div class="footer">
-                <button class="btn-secondary" onclick="resetRoutine()">limpiar todo</button>
-                <button class="btn-primary" onclick="saveRoutine()">guardar rutina</button>
+                <div class="step-nav" id="stepNav">
+                    <button class="btn-back" id="backBtn" onclick="previousStep()" style="display: none;">← atrás</button>
+                    <button class="btn-next" id="nextBtn" onclick="nextStep()">siguiente →</button>
+                </div>
+                <div class="step-counter" id="stepCounter">paso 1 de 3</div>
             </div>
         </div>
 
@@ -845,7 +941,7 @@
     <script>
         const DAYS = 3;
         const PERIODS = ['AM', 'PM'];
-
+        let currentStep = 1;
         let routineData = {};
         let completed = {};
 
@@ -858,10 +954,68 @@
             }
         }
 
+        function nextStep() {
+            if (currentStep === 1) {
+                const name = document.getElementById('nameInput1').value.trim();
+                if (!name) {
+                    alert('Por favor ingresa tu nombre');
+                    return;
+                }
+                routineData.name = name;
+                currentStep = 2;
+            } else if (currentStep === 2) {
+                if (!routineData.skinType) {
+                    alert('Por favor selecciona tu tipo de piel');
+                    return;
+                }
+                currentStep = 3;
+            } else if (currentStep === 3) {
+                saveRoutine();
+                return;
+            }
+            updateStep();
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        }
+
+        function updateStep() {
+            document.querySelectorAll('.onboarding-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            
+            document.getElementById('backBtn').style.display = currentStep > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').textContent = currentStep === 3 ? 'guardar rutina ✓' : 'siguiente →';
+            document.getElementById('stepCounter').textContent = `paso ${currentStep} de 3`;
+
+            if (currentStep === 2) {
+                setupSkinTypeButtons();
+            } else if (currentStep === 3) {
+                renderRoutine();
+            }
+        }
+
+        function setupSkinTypeButtons() {
+            document.querySelectorAll('.skin-btn').forEach(btn => {
+                if (btn.dataset.type === routineData.skinType) {
+                    btn.classList.add('selected');
+                }
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    routineData.skinType = btn.dataset.type;
+                });
+            });
+        }
+
         function initCreatePage() {
             const saved = localStorage.getItem('skinCycleRoutine');
             if (saved) {
                 routineData = JSON.parse(saved);
+                currentStep = 3;
             } else {
                 routineData = {
                     name: '',
@@ -871,14 +1025,12 @@
                 for (let i = 1; i <= DAYS; i++) {
                     routineData.days[`day${i}`] = { AM: [], PM: [] };
                 }
+                currentStep = 1;
             }
-            renderRoutine();
-            setupSkinTypeButtons();
+            updateStep();
         }
 
         function renderRoutine() {
-            document.getElementById('nameInput').value = routineData.name || '';
-
             const container = document.getElementById('daysContainer');
             container.innerHTML = '';
 
@@ -897,7 +1049,6 @@
 
                     const stepsList = document.createElement('div');
                     stepsList.className = 'steps-list';
-                    stepsList.id = `steps-${dayKey}-${period}`;
 
                     (dayData[period] || []).forEach((step, idx) => {
                         const stepEl = createStepInput(dayKey, period, idx, step);
@@ -948,19 +1099,6 @@
             return group;
         }
 
-        function setupSkinTypeButtons() {
-            document.querySelectorAll('.skin-btn').forEach(btn => {
-                if (btn.dataset.type === routineData.skinType) {
-                    btn.classList.add('selected');
-                }
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('selected'));
-                    btn.classList.add('selected');
-                    routineData.skinType = btn.dataset.type;
-                });
-            });
-        }
-
         function addStep(dayKey, period) {
             if (!routineData.days[dayKey][period]) {
                 routineData.days[dayKey][period] = [];
@@ -979,41 +1117,25 @@
         }
 
         function saveRoutine() {
-            routineData.name = document.getElementById('nameInput').value;
             localStorage.setItem('skinCycleRoutine', JSON.stringify(routineData));
             localStorage.setItem('skinCycleCompleted', JSON.stringify({}));
-            alert('✓ Rutina guardada');
             showPage('dashboardPage');
         }
 
-        function resetRoutine() {
-            if (confirm('¿limpiar toda la rutina?')) {
-                routineData = {
-                    name: '',
-                    skinType: '',
-                    days: {}
-                };
-                for (let i = 1; i <= DAYS; i++) {
-                    routineData.days[`day${i}`] = { AM: [], PM: [] };
-                }
-                renderRoutine();
-            }
-        }
-
         function initDashboard() {
-            routine = JSON.parse(localStorage.getItem('skinCycleRoutine')) || {};
-            completed = JSON.parse(localStorage.getItem('skinCycleCompleted')) || {};
+            const routine = JSON.parse(localStorage.getItem('skinCycleRoutine')) || {};
+            const completed = JSON.parse(localStorage.getItem('skinCycleCompleted')) || {};
 
             const dateOpts = { weekday: 'short', day: 'numeric', month: 'short' };
             const today = new Date().toLocaleDateString('es-ES', dateOpts);
             document.getElementById('headerDate').textContent = today;
 
-            renderDaily();
-            renderCalendar();
-            renderRoutineView();
+            renderDaily(routine, completed);
+            renderCalendar(completed);
+            renderRoutineView(routine);
         }
 
-        function renderDaily() {
+        function renderDaily(routine, completed) {
             const hour = new Date().getHours();
             const isAM = hour < 17;
             const today = new Date().toISOString().split('T')[0];
@@ -1037,10 +1159,7 @@
                 currentSteps.forEach((step, i) => {
                     const stepEl = document.createElement('div');
                     stepEl.className = 'routine-step';
-                    stepEl.innerHTML = `
-                        <div class="step-circle">${String(i + 1).padStart(2, '0')}</div>
-                        <span>${step}</span>
-                    `;
+                    stepEl.innerHTML = `<div class="step-circle">${String(i + 1).padStart(2, '0')}</div><span>${step}</span>`;
                     currentEl.appendChild(stepEl);
                 });
             }
@@ -1054,10 +1173,7 @@
                 otherSteps.forEach((step, i) => {
                     const stepEl = document.createElement('div');
                     stepEl.className = 'routine-step';
-                    stepEl.innerHTML = `
-                        <div class="step-circle">${String(i + 1).padStart(2, '0')}</div>
-                        <span>${step}</span>
-                    `;
+                    stepEl.innerHTML = `<div class="step-circle">${String(i + 1).padStart(2, '0')}</div><span>${step}</span>`;
                     otherEl.appendChild(stepEl);
                 });
             }
@@ -1073,11 +1189,11 @@
             completeBtn.onclick = () => {
                 completed[today] = !completed[today];
                 localStorage.setItem('skinCycleCompleted', JSON.stringify(completed));
-                renderDaily();
+                renderDaily(routine, completed);
             };
         }
 
-        function renderCalendar() {
+        function renderCalendar(completed) {
             const calendarEl = document.getElementById('calendarGrid');
             calendarEl.innerHTML = '';
             const today = new Date().toISOString().split('T')[0];
@@ -1098,7 +1214,7 @@
                 dayEl.onclick = () => {
                     completed[dateStr] = !completed[dateStr];
                     localStorage.setItem('skinCycleCompleted', JSON.stringify(completed));
-                    renderCalendar();
+                    renderCalendar(completed);
                 };
                 calendarEl.appendChild(dayEl);
             }
@@ -1117,7 +1233,7 @@
             document.getElementById('streakCount').textContent = streak;
         }
 
-        function renderRoutineView() {
+        function renderRoutineView(routine) {
             const content = document.getElementById('routineContent');
             content.innerHTML = '';
 
@@ -1155,9 +1271,6 @@
             event.target.classList.add('active');
         }
 
-        let routine = {};
-
-        // Inicializar
         window.addEventListener('load', () => {
             initCreatePage();
         });
