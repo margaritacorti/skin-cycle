@@ -2,982 +2,485 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#D4A8B8">
-    <title>SkinCycle - Tu Rutina IA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkinCycle</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: url('bg-flowers.jpg') center/cover no-repeat fixed;
-            overflow: hidden;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        :root {
-            --primary-green: rgba(110, 220, 160, 0.2);
-            --primary-green-border: rgba(110, 220, 160, 0.4);
-            --primary-green-dark: rgba(110, 220, 160, 0.5);
-            --secondary-blue: rgba(120, 170, 255, 0.2);
-            --secondary-blue-border: rgba(120, 170, 255, 0.4);
-            --secondary-blue-dark: rgba(120, 170, 255, 0.55);
-            --neutral-dark: rgba(255, 255, 255, 0.1);
-            --neutral-medium: rgba(255, 255, 255, 0.15);
-            --neutral-light: rgba(255, 255, 255, 0.2);
-            --text-primary: rgba(255, 255, 255, 0.98);
-            --text-secondary: rgba(255, 255, 255, 0.9);
-            --text-tertiary: rgba(255, 255, 255, 0.75);
-            --text-muted: rgba(255, 255, 255, 0.6);
-            --blur-light: blur(30px);
-            --blur-medium: blur(40px);
-            --blur-dark: blur(50px);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
         }
 
         #app {
             width: 100%;
             height: 100vh;
-            max-width: 375px;
-            background: url('bg-flowers.jpg') center/cover no-repeat fixed;
-            background-attachment: fixed;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, #f5d5e3 0%, #d4a5d4 50%, #b8a8d8 100%);
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: auto;
+            padding: 40px 20px;
         }
 
-        #app::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100%" height="100%" fill="%23000" opacity="0.02" filter="url(%23noise)" /></svg>');
-            background-size: 200px 200px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        #app > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 2px;
-        }
-
-        /* ================================ PAGES ================================ */
         .page {
             display: none;
             width: 100%;
-            height: 100%;
-            flex-direction: column;
+            max-width: 375px;
         }
 
         .page.active {
             display: flex;
-        }
-
-        /* ================================ ONBOARDING ================================ */
-        .onboarding-page {
-            display: flex;
             flex-direction: column;
-            padding: 24px;
-            gap: 24px;
-            height: 100%;
-            overflow-y: auto;
+            gap: 20px;
         }
 
-        .onboarding-header {
+        .header {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
-        .onboarding-title {
-            font-size: 24px;
+        .title {
+            font-size: 32px;
             font-weight: 700;
-            color: var(--text-primary);
+            color: white;
             margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .onboarding-subtitle {
-            font-size: 13px;
-            color: var(--text-tertiary);
-            letter-spacing: 0.8px;
+        .subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
         }
 
         .card {
-            background: var(--neutral-dark);
-            backdrop-filter: var(--blur-medium);
-            -webkit-backdrop-filter: var(--blur-medium);
-            border: 1.5px solid var(--neutral-light);
-            border-radius: 24px;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 20px;
             padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        .input-field {
+        .label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 600;
+        }
+
+        input {
             width: 100%;
-            padding: 14px 16px;
-            background: var(--neutral-dark);
-            backdrop-filter: var(--blur-medium);
-            -webkit-backdrop-filter: var(--blur-medium);
-            border: 1.5px solid var(--neutral-light);
-            border-radius: 20px;
+            padding: 14px;
+            background: rgba(255,255,255,0.2);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 16px;
+            color: rgba(255,255,255,0.95);
             font-size: 14px;
-            color: var(--text-primary);
             font-family: inherit;
             transition: all 0.3s;
         }
 
-        .input-field:focus {
-            outline: none;
-            background: var(--neutral-medium);
-            border-color: rgba(255, 255, 255, 0.35);
+        input::placeholder {
+            color: rgba(255,255,255,0.6);
         }
 
-        .skin-buttons {
+        input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .btn-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
 
-        .skin-btn {
-            padding: 16px 12px;
-            background: var(--neutral-dark);
-            backdrop-filter: var(--blur-medium);
-            -webkit-backdrop-filter: var(--blur-medium);
-            border: 1.5px solid var(--neutral-light);
-            border-radius: 20px;
-            color: var(--text-tertiary);
-            font-size: 14px;
+        button {
+            padding: 14px;
+            background: rgba(255,255,255,0.2);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 16px;
+            color: rgba(255,255,255,0.95);
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
             font-family: inherit;
+            transition: all 0.3s;
         }
 
-        .skin-btn:hover {
-            background: var(--neutral-medium);
-            border-color: rgba(255, 255, 255, 0.3);
+        button:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
         }
 
-        .skin-btn.active {
-            background: var(--primary-green);
-            border-color: var(--primary-green-dark);
-            color: var(--text-primary);
-            box-shadow: 0 8px 32px rgba(110, 220, 160, 0.2);
+        button:active {
+            transform: scale(0.98);
         }
 
-        .input-label {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            text-transform: lowercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 12px;
-            display: block;
-            font-weight: 500;
+        button.active {
+            background: rgba(110,220,160,0.4);
+            border-color: rgba(110,220,160,0.6);
+            color: white;
         }
 
-        .input-group {
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: rgba(110,220,160,0.3);
+            border-color: rgba(110,220,160,0.5);
+        }
+
+        .btn-primary:hover {
+            background: rgba(110,220,160,0.4);
+        }
+
+        .footer {
             display: flex;
-            flex-direction: column;
             gap: 12px;
+            margin-top: 20px;
         }
 
-        /* ================================ ROUTINE DAYS ================================ */
-        .days-container {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        .footer button {
             flex: 1;
-            overflow-y: auto;
-            margin-bottom: 16px;
         }
 
         .day-card {
-            background: var(--neutral-dark);
-            backdrop-filter: var(--blur-medium);
-            -webkit-backdrop-filter: var(--blur-medium);
-            border: 1.5px solid var(--neutral-light);
-            border-radius: 20px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
             padding: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 12px;
         }
 
         .day-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .day-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-small {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--secondary-blue);
-            border: 1px solid var(--secondary-blue-border);
-            color: var(--text-primary);
-            cursor: pointer;
             font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 12px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
+            justify-content: space-between;
         }
 
-        .btn-small:hover {
-            background: rgba(120, 170, 255, 0.3);
-            border-color: var(--secondary-blue-dark);
-        }
-
-        .period-section {
+        .period {
             margin-bottom: 12px;
         }
 
         .period-label {
             font-size: 11px;
-            color: var(--text-tertiary);
+            color: rgba(255,255,255,0.8);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 8px;
-            font-weight: 600;
         }
 
-        .steps-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .day-controls {
-            display: flex;
-            gap: 12px;
-            margin-top: 12px;
-            margin-bottom: 12px;
-        }
-
-        .day-card.dragging {
-            opacity: 0.5;
-            transform: scale(0.95);
-        }
-
-        .day-card.drag-over {
-            border-color: rgba(110, 220, 160, 0.8);
-            background: rgba(110, 220, 160, 0.1);
-        }
-
-        .step-input {
+        .step-row {
             display: flex;
             gap: 8px;
+            margin-bottom: 8px;
             align-items: center;
-            cursor: grab;
-            padding: 8px;
-            border-radius: 12px;
-            transition: all 0.2s;
         }
 
-        .step-input:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .step-input.dragging {
-            opacity: 0.5;
-            cursor: grabbing;
-        }
-
-        .step-drag-handle {
-            font-size: 14px;
-            cursor: grab;
-            color: var(--text-muted);
-        }
-
-        .step-input:hover .step-drag-handle {
-            color: var(--text-secondary);
-        }
-
-        .step-num {
-            font-size: 11px;
-            min-width: 20px;
-            color: var(--text-tertiary);
-            font-weight: 600;
-        }
-
-        .step-field {
+        .step-row input {
             flex: 1;
-            padding: 10px 12px;
-            background: var(--neutral-dark);
-            backdrop-filter: var(--blur-light);
-            -webkit-backdrop-filter: var(--blur-light);
-            border: 1.2px solid var(--neutral-light);
-            border-radius: 16px;
+            padding: 10px;
             font-size: 13px;
-            color: var(--text-primary);
-            font-family: inherit;
         }
 
-        .step-field:focus {
-            outline: none;
-            background: var(--neutral-medium);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-remove {
-            width: 28px;
-            height: 28px;
+        .btn-small {
+            width: 32px;
+            height: 32px;
+            padding: 0;
             border-radius: 50%;
-            background: rgba(255, 100, 100, 0.2);
-            border: 1px solid rgba(255, 100, 100, 0.4);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .btn-add {
-            width: 100%;
-            padding: 10px;
-            background: var(--primary-green);
-            border: 1.2px solid var(--primary-green-border);
-            border-radius: 16px;
-            color: var(--text-primary);
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-
-        .btn-add:hover {
-            background: rgba(110, 220, 160, 0.3);
-        }
-
-        /* ================================ BUTTONS ================================ */
-        .btn {
-            padding: 13px 24px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
-            transition: all 0.3s;
-        }
-
-        .btn--primary {
-            background: var(--primary-green);
-            border: 1.5px solid var(--primary-green-border);
-            color: var(--text-primary);
-        }
-
-        .btn--primary:hover {
-            background: rgba(110, 220, 160, 0.3);
-            border-color: var(--primary-green-dark);
-        }
-
-        .btn--secondary {
-            background: var(--neutral-dark);
-            border: 1.2px solid var(--neutral-light);
-            color: var(--text-secondary);
-        }
-
-        .btn--secondary:hover {
-            background: var(--neutral-medium);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .btn--accent {
-            background: var(--secondary-blue);
-            border: 1.5px solid var(--secondary-blue-border);
-            color: var(--text-primary);
-            width: 100%;
-        }
-
-        .btn--accent:hover {
-            background: rgba(120, 170, 255, 0.3);
-            border-color: var(--secondary-blue-dark);
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-group button {
-            flex: 1;
-        }
-
-        /* ================================ FOOTER ================================ */
-        .footer {
-            padding: 16px 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            display: flex;
-            gap: 12px;
-        }
-
-        .slider-continuar {
-            flex: 1;
-            padding: 14px;
-            background: var(--primary-green);
-            border: 1.5px solid var(--primary-green-border);
-            border-radius: 20px;
-            color: var(--text-primary);
-            font-weight: 600;
-            cursor: grab;
-            user-select: none;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .slider-continuar:hover {
-            background: rgba(110, 220, 160, 0.3);
-            border-color: var(--primary-green-dark);
-        }
-
-        /* ================================ DASHBOARD ================================ */
-        .dashboard-header {
-            padding: 16px 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .dashboard-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .dashboard-date {
-            font-size: 11px;
-            color: var(--text-tertiary);
-        }
-
-        .tabs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            padding: 0 24px;
-            margin: 16px 0;
-        }
-
-        .tab {
-            padding: 10px;
-            background: var(--neutral-dark);
-            border: 1.5px solid var(--neutral-light);
-            border-radius: 20px;
-            color: var(--text-tertiary);
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .tab.active {
-            background: var(--neutral-medium);
-            border-color: rgba(255, 255, 255, 0.35);
-            color: var(--text-primary);
-        }
-
-        .dashboard-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0 24px 24px;
-        }
-
-        .view {
-            display: none;
-        }
-
-        .view.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .empty-state {
-            color: var(--text-muted);
-            font-size: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .routine-widget {
-            background: var(--neutral-dark);
-            backdrop-filter: var(--blur-medium);
-            -webkit-backdrop-filter: var(--blur-medium);
-            border: 1.5px solid var(--neutral-light);
-            border-radius: 20px;
-            padding: 16px;
-            margin-bottom: 14px;
-        }
-
-        .routine-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            color: var(--text-primary);
-            padding: 8px 0;
-        }
-
-        .step-circle {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-secondary);
             flex-shrink: 0;
         }
 
-        /* ================================ MODAL ================================ */
-        .modal {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            max-width: 375px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 24px 24px 0 0;
-            height: 80vh;
-            z-index: 100;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-header {
-            padding: 16px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-close {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.1);
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            color: rgba(0, 0, 0, 0.6);
-        }
-
-        .modal-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .chat-message {
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .chat-message.user {
-            background: rgba(110, 220, 160, 0.2);
-            color: rgba(0, 0, 0, 0.9);
-            align-self: flex-end;
-            max-width: 80%;
-        }
-
-        .chat-message.ai {
-            background: rgba(200, 200, 200, 0.2);
-            color: rgba(0, 0, 0, 0.8);
-            align-self: flex-start;
-            max-width: 95%;
-        }
-
-        .modal-input {
-            padding: 12px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 8px;
-        }
-
-        .modal-input input {
-            flex: 1;
-            padding: 10px 12px;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            font-size: 13px;
-            font-family: inherit;
-        }
-
-        .modal-input button {
-            padding: 10px 16px;
-            background: rgba(110, 220, 160, 0.3);
-            border: 1px solid rgba(110, 220, 160, 0.5);
-            border-radius: 20px;
-            color: rgba(0, 0, 0, 0.8);
-            font-weight: 600;
-            cursor: pointer;
+        .btn-add-step {
+            width: 100%;
+            margin-top: 8px;
+            padding: 10px;
+            background: rgba(110,220,160,0.2);
+            border: 1px solid rgba(110,220,160,0.3);
             font-size: 12px;
+        }
+
+        .cta {
+            background: rgba(120,170,255,0.2);
+            border: 1px solid rgba(120,170,255,0.4);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 4px;
+        }
+
+        .cta-desc {
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .cta button {
+            width: 100%;
+            margin-top: 10px;
+            background: rgba(120,170,255,0.3);
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- PAGE 1: ONBOARDING PASO 1 -->
-        <div id="onboardingStep1" class="page active">
-            <div class="onboarding-page">
-                <div class="onboarding-header">
-                    <div class="onboarding-title">SkinCycle</div>
-                    <div class="onboarding-subtitle">Vamos a empezar</div>
-                </div>
+        <!-- STEP 1 -->
+        <div id="step1" class="page active">
+            <div class="header">
+                <div class="title">SkinCycle</div>
+                <div class="subtitle">Vamos a empezar</div>
+            </div>
 
-                <div class="card">
-                    <label class="input-label">¿Cuál es tu nombre?</label>
-                    <input type="text" class="input-field" id="nameInput" placeholder="tu nombre" maxlength="30" onkeypress="if(event.key==='Enter') Onboarding.nextFromStep1()">
-                </div>
+            <div class="card">
+                <div class="label">¿Cuál es tu nombre?</div>
+                <input type="text" id="nameInput" placeholder="Tu nombre">
+            </div>
 
-                <div class="card">
-                    <label class="input-label">¿Qué tipo de piel tienes?</label>
-                    <div class="skin-buttons">
-                        <button class="skin-btn" onclick="Onboarding.setSkinType('Seca')">Seca</button>
-                        <button class="skin-btn" onclick="Onboarding.setSkinType('Grasa')">Grasa</button>
-                        <button class="skin-btn" onclick="Onboarding.setSkinType('Mixta')">Mixta</button>
-                        <button class="skin-btn" onclick="Onboarding.setSkinType('Sensible')">Sensible</button>
-                    </div>
+            <div class="card">
+                <div class="label">¿Qué tipo de piel tienes?</div>
+                <div class="btn-group">
+                    <button onclick="selectSkin(this, 'Seca')">Seca</button>
+                    <button onclick="selectSkin(this, 'Grasa')">Grasa</button>
+                    <button onclick="selectSkin(this, 'Mixta')">Mixta</button>
+                    <button onclick="selectSkin(this, 'Sensible')">Sensible</button>
                 </div>
+            </div>
+
+            <button class="btn-primary btn-full" onclick="goStep2()">siguiente →</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="step2" class="page">
+            <div class="header">
+                <div class="title">Armemos tu rutina</div>
+                <div class="subtitle">Agrega los pasos para cada día</div>
+            </div>
+
+            <div id="daysContainer" style="flex: 1; width: 100%;"></div>
+
+            <div class="card">
+                <button class="btn-full" onclick="addDay()">+ agregar día</button>
+                <button class="btn-full" onclick="duplicateDay()">📋 duplicar día</button>
+                <button class="btn-full" onclick="clearAll()">🗑️ borrar todo</button>
+            </div>
+
+            <div class="cta">
+                <div class="cta-title">💬 ¿Necesitas ayuda?</div>
+                <div class="cta-desc">Habla con la IA si no sabes qué productos usar</div>
+                <button onclick="openChat()">hablar con IA</button>
             </div>
 
             <div class="footer">
-                <button class="btn btn--primary" onclick="Onboarding.nextFromStep1()" style="flex:1;">siguiente →</button>
+                <button class="btn-full" onclick="goStep1()">← atrás</button>
+                <button class="btn-primary btn-full" onclick="saveDone()">continuar →</button>
             </div>
         </div>
 
-        <!-- PAGE 2: ONBOARDING PASO 2 -->
-        <div id="onboardingStep2" class="page">
-            <div class="onboarding-page">
-                <div class="onboarding-header">
-                    <div class="onboarding-title">Armemos tu rutina</div>
-                    <div class="onboarding-subtitle">Agrega los pasos para cada día</div>
-                </div>
-
-                <div class="days-container" id="daysContainer"></div>
-
-                <div class="day-controls">
-                    <button class="btn btn--secondary" onclick="Onboarding.addDay()" style="flex:1;">+ agregar día</button>
-                    <button class="btn btn--secondary" onclick="Onboarding.duplicateFirstDay()" style="flex:1;">📋 duplicar día</button>
-                </div>
-
-                <button class="btn btn--secondary" onclick="Onboarding.clearAll()" style="width:100%; margin-top: 8px; opacity: 0.7;">🗑️ borrar todo</button>
-            </div>
-
-            <div class="footer">
-                <div class="card" style="margin: 0 -24px -16px -24px; border-radius: 20px 20px 0 0; padding: 16px 24px; border-left: none; border-right: none; border-bottom: none;">
-                    <button class="btn btn--accent" onclick="Chat.open()" style="width: 100%;">💬 ¿Necesitas ayuda?</button>
-                    <div style="margin-top: 8px; font-size: 11px; color: var(--text-tertiary); text-align: center;">
-                        Habla con la IA si no sabes qué productos usar
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 12px; margin-top: -8px;">
-                    <button class="btn btn--secondary" onclick="Onboarding.backToStep1()" style="flex:1;">← atrás</button>
-                    <div class="slider-continuar" draggable="true" onclick="Onboarding.completeOnboarding()" ondragend="Onboarding.completeOnboarding()" style="flex:2;">
-                        continuar →
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE 3: DASHBOARD -->
+        <!-- DASHBOARD -->
         <div id="dashboard" class="page">
-            <div class="dashboard-header">
-                <div>
-                    <div class="dashboard-title">SkinCycle</div>
-                    <div class="dashboard-date" id="dashDate"></div>
-                </div>
-                <button class="btn btn--secondary" onclick="UI.editRoutine()" style="padding: 10px 14px;">✏️</button>
+            <div class="header">
+                <div class="title">SkinCycle</div>
+                <div class="subtitle" id="dashDate"></div>
             </div>
 
-            <div class="tabs">
-                <button class="tab active" onclick="Dashboard.switchTab('daily', event)">hoy</button>
-                <button class="tab" onclick="Dashboard.switchTab('calendar', event)">tracker</button>
-                <button class="tab" onclick="Dashboard.switchTab('routine', event)">rutina</button>
+            <div class="card">
+                <p style="color: rgba(255,255,255,0.9); text-align: center;">Tu rutina se guardó correctamente ✅</p>
             </div>
 
-            <div class="dashboard-content">
-                <div id="daily" class="view active">
-                    <div class="routine-widget">
-                        <div style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;" id="ampmTitle">AM ☀️</div>
-                        <div id="dailySteps"></div>
-                        <button class="btn btn--primary" onclick="Dashboard.toggleComplete()" style="width:100%; margin-top: 12px;">marcar como completada</button>
-                    </div>
-
-                    <div class="routine-widget">
-                        <div style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;" id="pmTitle">PM 🌙</div>
-                        <div id="pmSteps"></div>
-                    </div>
-
-                    <button class="btn btn--accent" onclick="Chat.open()">💬 obtener recomendaciones</button>
-                </div>
-
-                <div id="calendar" class="view">
-                    <div style="color: var(--text-muted);">Calendar view</div>
-                </div>
-
-                <div id="routine" class="view">
-                    <div style="color: var(--text-muted);">Routine view</div>
-                </div>
-            </div>
+            <button class="btn-primary btn-full" onclick="goStep2()">← editar rutina</button>
         </div>
     </div>
 
-    <!-- CHAT MODAL -->
-    <div id="chatModal" class="modal">
-        <div class="modal-header">
-            <div class="modal-title">💭 IA Skincare</div>
-            <button class="modal-close" onclick="Chat.close()">✕</button>
-        </div>
-        <div class="modal-content" id="chatContent"></div>
-        <div class="modal-input">
-            <input type="text" id="userInput" placeholder="describe tu problema..." onkeypress="if(event.key==='Enter') Chat.send()">
-            <button onclick="Chat.send()">→</button>
+    <!-- CHAT -->
+    <div id="chatOverlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; flex-direction: column; align-items: center; justify-content: flex-end;">
+        <div style="background: white; width: 100%; max-width: 375px; border-radius: 24px 24px 0 0; max-height: 80vh; display: flex; flex-direction: column;">
+            <div style="padding: 16px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between;">
+                <strong>💭 IA Skincare</strong>
+                <button onclick="closeChat()" style="background: none; border: none; cursor: pointer; font-size: 20px;">×</button>
+            </div>
+            <div id="chatContent" style="flex: 1; overflow-y: auto; padding: 16px;"></div>
+            <div style="padding: 12px; border-top: 1px solid #ddd; display: flex; gap: 8px;">
+                <input type="text" id="chatInput" placeholder="Tu pregunta..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 16px;">
+                <button onclick="sendMsg()" style="padding: 10px 16px; background: #667eea; color: white; border: none; border-radius: 16px; cursor: pointer;">→</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // ============ CONFIG ============
-        const CONFIG = {
-            HF_TOKEN: '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',
-            HF_MODEL: 'mistralai/Mistral-7B-Instruct-v0.1',
-            HF_API: 'https://api-inference.huggingface.co/models',
-            STORAGE_ROUTINE: 'skinCycleRoutine',
-            STORAGE_COMPLETED: 'skinCycleCompleted'
-        };
-
-        // ============ STATE ============
-        let routine = {
+        let state = {
             name: '',
             skinType: '',
             days: { day1: { AM: [], PM: [] } }
         };
 
-        // ============ LOAD STATE ============
-        function loadState() {
-            const saved = localStorage.getItem(CONFIG.STORAGE_ROUTINE);
-            if (saved) {
-                routine = JSON.parse(saved);
-                showPage('dashboard');
-            }
-        }
-
-        // ============ UI FUNCTIONS ============
-        function showPage(pageId) {
+        function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            document.getElementById(id).classList.add('active');
         }
 
-        // ============ STEP 1 ============
-        function setSkinType(type) {
-            routine.skinType = type;
-            document.querySelectorAll('.skin-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        function selectSkin(btn, type) {
+            document.querySelectorAll('.btn-group button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state.skinType = type;
+            console.log('Skin selected:', type);
         }
 
-        function nextFromStep1() {
+        function goStep2() {
             const name = document.getElementById('nameInput').value.trim();
-            if (!name) {
-                alert('Por favor ingresa tu nombre');
-                return;
-            }
-            if (!routine.skinType) {
-                alert('Por favor selecciona tu tipo de piel');
-                return;
-            }
-            routine.name = name;
-            showPage('onboardingStep2');
+            if (!name) { alert('Ingresa tu nombre'); return; }
+            if (!state.skinType) { alert('Selecciona tipo de piel'); return; }
+            state.name = name;
             renderDays();
+            showPage('step2');
         }
 
-        function backToStep1() {
-            showPage('onboardingStep1');
+        function goStep1() {
+            showPage('step1');
         }
 
-        // ============ STEP 2 - DAYS ============
         function renderDays() {
             const container = document.getElementById('daysContainer');
             container.innerHTML = '';
-
-            Object.entries(routine.days).forEach(([dayKey, dayData], idx) => {
-                const dayNum = idx + 1;
-                const dayCard = document.createElement('div');
-                dayCard.className = 'day-card';
-
-                let html = `
-                    <div class="day-header">
-                        <div class="day-title">📅 Día ${dayNum}</div>
-                        <div class="day-actions">
-                            ${dayNum > 1 ? `<button class="btn-small" onclick="removeDay('${dayKey}')" title="Eliminar" style="background: rgba(255,100,100,0.2);">✕</button>` : ''}
-                        </div>
-                    </div>
-                `;
-
-                ['AM', 'PM'].forEach(period => {
-                    html += `
-                        <div class="period-section">
-                            <div class="period-label">${period}</div>
-                            <div class="steps-list" data-daykey="${dayKey}" data-period="${period}">
-                    `;
+            let dayNum = 1;
+            
+            for (const [dayKey, dayData] of Object.entries(state.days)) {
+                const card = document.createElement('div');
+                card.className = 'day-card';
+                
+                let html = `<div class="day-title">📅 Día ${dayNum}`;
+                if (dayNum > 1) {
+                    html += ` <button class="btn-small" onclick="removeDay('${dayKey}')" style="background: rgba(255,100,100,0.3);">×</button>`;
+                }
+                html += `</div>`;
+                
+                for (const period of ['AM', 'PM']) {
+                    html += `<div class="period"><div class="period-label">${period}</div>`;
                     
-                    (dayData[period] || []).forEach((step, idx) => {
-                        html += `
-                            <div class="step-input">
-                                <span class="step-drag-handle">⋮⋮</span>
-                                <span class="step-num">0${idx + 1}</span>
-                                <input type="text" class="step-field" value="${step}" onchange="updateStep('${dayKey}', '${period}', ${idx}, this.value)" placeholder="paso ${idx + 1}">
-                                <button class="btn-remove" onclick="removeStep('${dayKey}', '${period}', ${idx})">×</button>
-                            </div>
-                        `;
-                    });
-
-                    html += `
-                            </div>
-                            <button class="btn-add" onclick="addStep('${dayKey}', '${period}')">+ agregar paso</button>
-                        </div>
-                    `;
-                });
-
-                dayCard.innerHTML = html;
-                container.appendChild(dayCard);
-            });
+                    if (dayData[period]) {
+                        dayData[period].forEach((step, i) => {
+                            html += `
+                                <div class="step-row">
+                                    <span style="color: rgba(255,255,255,0.7); font-weight: 600; min-width: 30px;">0${i+1}</span>
+                                    <input type="text" value="${step}" onchange="updateStep('${dayKey}', '${period}', ${i}, this.value)" placeholder="paso">
+                                    <button class="btn-small" onclick="removeStep('${dayKey}', '${period}', ${i})">×</button>
+                                </div>
+                            `;
+                        });
+                    }
+                    
+                    html += `<button class="btn-add-step" onclick="addStep('${dayKey}', '${period}')">+ agregar paso</button>`;
+                    html += `</div>`;
+                }
+                
+                card.innerHTML = html;
+                container.appendChild(card);
+                dayNum++;
+            }
         }
 
         function addStep(dayKey, period) {
-            routine.days[dayKey][period].push('');
+            state.days[dayKey][period].push('');
             renderDays();
         }
 
-        function updateStep(dayKey, period, idx, value) {
-            routine.days[dayKey][period][idx] = value;
+        function updateStep(dayKey, period, idx, val) {
+            state.days[dayKey][period][idx] = val;
         }
 
         function removeStep(dayKey, period, idx) {
-            routine.days[dayKey][period].splice(idx, 1);
+            state.days[dayKey][period].splice(idx, 1);
             renderDays();
         }
 
         function addDay() {
-            const newNum = Object.keys(routine.days).length + 1;
-            routine.days[`day${newNum}`] = { AM: [], PM: [] };
+            const num = Object.keys(state.days).length + 1;
+            state.days[`day${num}`] = { AM: [], PM: [] };
             renderDays();
         }
 
-        function duplicateFirstDay() {
-            const newNum = Object.keys(routine.days).length + 1;
-            routine.days[`day${newNum}`] = JSON.parse(JSON.stringify(routine.days.day1));
+        function duplicateDay() {
+            const num = Object.keys(state.days).length + 1;
+            state.days[`day${num}`] = JSON.parse(JSON.stringify(state.days.day1));
             renderDays();
         }
 
         function removeDay(dayKey) {
-            if (Object.keys(routine.days).length === 1) {
-                alert('Debes tener al menos un día');
-                return;
-            }
-            delete routine.days[dayKey];
-            
+            if (Object.keys(state.days).length === 1) { alert('Necesitas al menos 1 día'); return; }
+            delete state.days[dayKey];
             const newDays = {};
-            let count = 1;
-            Object.keys(routine.days).sort().forEach(key => {
-                newDays[`day${count}`] = routine.days[key];
-                count++;
+            let n = 1;
+            Object.keys(state.days).sort().forEach(k => {
+                newDays[`day${n}`] = state.days[k];
+                n++;
             });
-            routine.days = newDays;
+            state.days = newDays;
             renderDays();
         }
 
         function clearAll() {
-            if (confirm('¿Borrar toda la rutina? No se puede deshacer.')) {
-                routine.days = { day1: { AM: [], PM: [] } };
+            if (confirm('¿Borrar todo?')) {
+                state.days = { day1: { AM: [], PM: [] } };
                 renderDays();
             }
         }
 
-        function completeOnboarding() {
-            const hasSteps = Object.values(routine.days).some(day => 
-                day.AM.length > 0 || day.PM.length > 0
-            );
-            
-            if (!hasSteps) {
-                alert('Agrega al menos un paso a tu rutina');
-                return;
-            }
-
-            localStorage.setItem(CONFIG.STORAGE_ROUTINE, JSON.stringify(routine));
+        function saveDone() {
+            const hasSteps = Object.values(state.days).some(d => d.AM.length > 0 || d.PM.length > 0);
+            if (!hasSteps) { alert('Agrega al menos 1 paso'); return; }
+            localStorage.setItem('routine', JSON.stringify(state));
+            document.getElementById('dashDate').textContent = new Date().toLocaleDateString('es-ES');
             showPage('dashboard');
         }
 
-        // ============ CHAT ============
         function openChat() {
-            document.getElementById('chatModal').classList.add('active');
+            document.getElementById('chatOverlay').style.display = 'flex';
         }
 
         function closeChat() {
-            document.getElementById('chatModal').classList.remove('active');
+            document.getElementById('chatOverlay').style.display = 'none';
         }
 
-        // ============ INIT ============
+        function sendMsg() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            
+            const chat = document.getElementById('chatContent');
+            const userDiv = document.createElement('div');
+            userDiv.style.cssText = 'background: #667eea; color: white; padding: 10px; border-radius: 10px; margin: 8px 0; text-align: right;';
+            userDiv.textContent = msg;
+            chat.appendChild(userDiv);
+            input.value = '';
+            chat.scrollTop = chat.scrollHeight;
+        }
+
         window.addEventListener('load', () => {
-            loadState();
+            const saved = localStorage.getItem('routine');
+            if (saved) {
+                state = JSON.parse(saved);
+                document.getElementById('dashDate').textContent = new Date().toLocaleDateString('es-ES');
+                showPage('dashboard');
+            }
+            console.log('App cargada');
         });
     </script>
 </body>
